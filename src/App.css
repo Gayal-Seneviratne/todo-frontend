@@ -1,0 +1,76 @@
+.todo-container {
+  /* increased width so left and right panes can sit side-by-side on desktop */
+  max-width: 1100px;
+  margin: 40px auto;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(60, 60, 120, 0.12);
+  padding: 32px 24px;
+}
+
+.todo-title {
+  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+}
+
+/* Grid layout: left (create), divider, right (list) */
+.todo-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 32px minmax(300px, 1fr);
+  gap: 28px; /* symmetric gap between columns */
+  /* stretch so divider fills full height of the taller pane */
+  align-items: stretch;
+  margin-top: 8px;
+}
+
+.left-pane,
+.right-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* ensure children expand to fill column width/height */
+  align-items: stretch;
+  /* symmetric horizontal padding so both panes keep equal distance from the divider */
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+/* make the immediate child component take full width and include box-sizing so padding doesn't overflow */
+.left-pane > *,
+.right-pane > * {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
+.divider::before {
+  content: "";
+  width: 12px;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #a78bfa 0%, #06b6d4 50%, #60a5fa 100%);
+  box-shadow: 0 6px 22px rgba(99, 102, 241, 0.16);
+}
+
+/* ensure the divider area has comfortable breathing room */
+/* divider uses ::before for visual - no extra rule needed here */
+
+/* Responsive: stack on small screens */
+@media (max-width: 880px) {
+  .todo-grid {
+    grid-template-columns: 1fr;
+  }
+  .divider {
+    display: none;
+  }
+}
