@@ -54,11 +54,28 @@ npm run test:ui
 npm run lint
 ```
 
-## 🐳 Docker (Optional)
-```bash
+## 🐳 Docker
+
+This repo includes a Dockerfile that builds the production bundle and serves it using Vite Preview.
+
+- Container port: 3000 (see `vite.config.ts` preview.port)
+- Host binding: 0.0.0.0 (see `vite.config.ts` preview.host)
+
+Build the image:
+```cmd
 docker build -t todo-frontend .
-docker run -p 5173:5173 todo-frontend
 ```
+
+Run the container and map the port:
+```cmd
+docker run --rm -p 3000:3000 todo-frontend
+```
+
+Open the app at:
+```
+http://localhost:3000`
+
+
 
 ## 📁 Project Structure
 ```

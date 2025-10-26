@@ -11,7 +11,7 @@ interface ListTodosProps {
 export default function ListTodos({ tasks, loading, error, onDone }: ListTodosProps) {
   return (
     <>
-      <h2 className="todo-recent-title">Recent (5)</h2>
+      <h2 className="todo-recent-title">Recent ({tasks.length})</h2>
       {loading && <p className="todo-loading">Loading...</p>}
       {error && <p className="todo-error">{error}</p>}
       <div className="todo-list">
