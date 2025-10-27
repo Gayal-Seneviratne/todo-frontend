@@ -7,7 +7,14 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+# Configure npm with increased timeout and retry settings
+RUN npm config set registry https://registry.npmjs.org/ && \
+    npm config set fetch-timeout 600000 && \
+    npm config set fetch-retry-mintimeout 10000 && \
+    npm config set fetch-retry-maxtimeout 60000 && \
+    npm config set fetch-retries 5
+
+RUN npm install --verbose
 
 
 COPY . .
